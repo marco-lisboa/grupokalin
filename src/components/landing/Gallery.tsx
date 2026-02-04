@@ -21,7 +21,7 @@ const Gallery = () => {
     { id: 3, title: 'Pilates', image: pilatesImg },
     { id: 4, title: 'Reeducação Postural (RPG)', image: rpgImg },
     { id: 5, title: 'Acupuntura', image: acupunturaImg },
-    { id: 6, title: 'Fisioterapia Respiratória', image: respiratoriaImg },
+    { id: 6, title: 'Quiropraxia', image: respiratoriaImg },
   ];
 
   return (
