@@ -10,14 +10,21 @@ const Header = () => {
     { href: '#home', label: 'Home' },
     { href: '#quem-somos', label: 'Quem Somos' },
     { href: '#servicos', label: 'Serviços' },
-    { href: '#galeria', label: 'Galeria' },
+    { href: '#galeria', label: 'Especialidades' },
     { href: '#contato', label: 'Contato' },
   ];
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerHeight = 80;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - headerHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
     setIsMenuOpen(false);
   };
