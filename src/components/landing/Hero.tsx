@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Heart, Shield, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import heroImage from '@/assets/hero-physio.jpg';
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -18,12 +19,13 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-secondary via-background to-accent" />
-      
-      {/* Decorative elements */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroImage})` }}
+      />
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/85 to-background/60" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -34,7 +36,7 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="text-center lg:text-left"
           >
-            <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6">
+            <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6 backdrop-blur-sm">
               Fisioterapia & Pilates
             </span>
             
@@ -57,7 +59,7 @@ const Hero = () => {
                 size="lg" 
                 variant="outline" 
                 onClick={() => document.querySelector('#servicos')?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-base px-8"
+                className="text-base px-8 backdrop-blur-sm"
               >
                 Conheça nossos Serviços
               </Button>
@@ -71,7 +73,7 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 + index * 0.1 }}
-                  className="flex items-center gap-2 text-muted-foreground"
+                  className="flex items-center gap-2 text-muted-foreground backdrop-blur-sm bg-background/30 px-3 py-2 rounded-lg"
                 >
                   <feature.icon className="h-5 w-5 text-primary" />
                   <span className="text-sm font-medium">{feature.text}</span>
@@ -80,27 +82,8 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Image/Illustration */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative hidden lg:block"
-          >
-            <div className="relative w-full aspect-square max-w-lg mx-auto">
-              {/* Decorative circles */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-full" />
-              <div className="absolute inset-8 bg-gradient-to-br from-primary/30 to-primary/10 rounded-full" />
-              <div className="absolute inset-16 bg-primary/20 rounded-full flex items-center justify-center">
-                <div className="text-center p-8">
-                  <Heart className="h-20 w-20 text-primary mx-auto mb-4" />
-                  <p className="text-primary font-semibold text-lg" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                    Cuidando de você
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          {/* Empty space for image visibility */}
+          <div className="hidden lg:block" />
         </div>
       </div>
 
@@ -110,7 +93,7 @@ const Hero = () => {
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
       >
-        <div className="w-6 h-10 border-2 border-primary/30 rounded-full flex justify-center pt-2">
+        <div className="w-6 h-10 border-2 border-primary/30 rounded-full flex justify-center pt-2 backdrop-blur-sm">
           <div className="w-1.5 h-3 bg-primary rounded-full" />
         </div>
       </motion.div>
