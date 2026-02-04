@@ -82,8 +82,28 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Empty space for image visibility */}
-          <div className="hidden lg:block" />
+          {/* Circular image element */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="hidden lg:flex items-center justify-center"
+          >
+            <div className="relative">
+              {/* Outer decorative ring */}
+              <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-primary/30 to-primary/10 blur-sm" />
+              {/* Main circular image */}
+              <div className="relative w-80 h-80 xl:w-96 xl:h-96 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
+                <img 
+                  src={heroImage} 
+                  alt="Fisioterapeuta em atendimento"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              {/* Accent circle */}
+              <div className="absolute -bottom-2 -right-2 w-20 h-20 rounded-full bg-primary/80 backdrop-blur-sm" />
+            </div>
+          </motion.div>
         </div>
       </div>
 
