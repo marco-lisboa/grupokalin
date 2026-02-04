@@ -28,7 +28,7 @@ const Footer = () => {
             <div className="flex items-center gap-3 mb-4">
               <img src={logo} alt="Grupo Kalin" className="h-12 w-auto brightness-0 invert" />
               <span className="font-bold text-xl text-background" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                Grupo Kalin
+                Grupo Kalin Fisioterapia
               </span>
             </div>
             <p className="text-background/70 mb-6 max-w-md">

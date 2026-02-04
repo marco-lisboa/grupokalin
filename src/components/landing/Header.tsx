@@ -30,7 +30,7 @@ const Header = () => {
           <a href="#home" onClick={() => scrollToSection('#home')} className="flex items-center gap-3">
             <img src={logo} alt="Grupo Kalin" className="h-12 w-auto" />
             <span className="font-bold text-xl text-primary hidden sm:block" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-              Grupo Kalin
+              Grupo Kalin Fisioterapia
             </span>
           </a>
 
