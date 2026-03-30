@@ -35,7 +35,7 @@ const About = () => {
   ];
 
   return (
-    <section id="quem-somos" className="py-20 lg:py-32 bg-secondary/30" ref={ref}>
+    <section id="quem-somos" className="py-20 lg:py-32 bg-secondary/30 overflow-hidden" ref={ref}>
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content */}
@@ -43,6 +43,7 @@ const About = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
+            className="text-center lg:text-left flex flex-col items-center lg:items-start"
           >
             <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6">
               Quem Somos
@@ -58,7 +59,7 @@ const About = () => {
             </p>
 
             {/* Differentials list */}
-            <div className="grid sm:grid-cols-2 gap-3">
+            <div className="grid sm:grid-cols-2 gap-3 text-left w-full max-w-lg mx-auto lg:mx-0">
               {differentials.map((item, index) => (
                 <motion.div
                   key={item}
