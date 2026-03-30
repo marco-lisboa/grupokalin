@@ -1,32 +1,68 @@
-import { useState } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Menu, X, Phone, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '@/assets/logo-grupo-kalin.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSpecialtiesOpen, setIsSpecialtiesOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const navLinks = [
-    { href: '#home', label: 'Home' },
-    { href: '#quem-somos', label: 'Quem Somos' },
-    { href: '#servicos', label: 'Serviços' },
-    { href: '#galeria', label: 'Especialidades' },
-    { href: '#contato', label: 'Contato' },
+  const specialties = [
+    'Fisioterapia Neurofuncional',
+    'Pélvica',
+    'Esportiva',
+    'Pediátrica',
+    'Traumato-Ortopédica',
+    'Gerontológica',
+    'Nutricionista',
+    'Saúde do Trabalho',
+    'Pilates',
+    'Reeducação Postural (RPG)',
+    'Acupuntura',
+    'Recovery',
+    'Quiropraxia',
+    'Psicologia',
   ];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      const headerHeight = 80;
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - headerHeight;
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setIsSpecialtiesOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+  const scrollToSection = (href: string) => {
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          const headerHeight = 80;
+          const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ top: elementPosition - headerHeight, behavior: 'smooth' });
+        }
+      }, 300);
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        const headerHeight = 80;
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: elementPosition - headerHeight, behavior: 'smooth' });
+      }
     }
     setIsMenuOpen(false);
+    setIsSpecialtiesOpen(false);
+  };
+
+  const handleSchedule = () => {
+    window.open('https://api.seufisio.com.br/pre-cadastro/0dba64f3-6a3e-4dc5-99b0-b0e2379b264d/prospect', '_blank');
   };
 
   return (
@@ -42,24 +78,63 @@ const Header = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
+          <nav className="hidden lg:flex items-center gap-6">
+            <button onClick={() => scrollToSection('#home')} className="text-foreground/80 hover:text-primary transition-colors font-medium">
+              Home
+            </button>
+            <button onClick={() => scrollToSection('#quem-somos')} className="text-foreground/80 hover:text-primary transition-colors font-medium">
+              Quem Somos
+            </button>
+
+            {/* Especialidades dropdown */}
+            <div ref={dropdownRef} className="relative">
               <button
-                key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                className="text-foreground/80 hover:text-primary transition-colors font-medium"
+                onClick={() => setIsSpecialtiesOpen(!isSpecialtiesOpen)}
+                className="flex items-center gap-1 text-foreground/80 hover:text-primary transition-colors font-medium"
               >
-                {link.label}
+                Especialidades
+                <ChevronDown className={`h-4 w-4 transition-transform ${isSpecialtiesOpen ? 'rotate-180' : ''}`} />
               </button>
-            ))}
+              {isSpecialtiesOpen && (
+                <div className="absolute top-full left-0 mt-2 w-64 bg-background border border-border rounded-xl shadow-lg py-2 z-50">
+                  {specialties.map((s) => (
+                    <button
+                      key={s}
+                      onClick={() => {
+                        scrollToSection('#galeria');
+                        setIsSpecialtiesOpen(false);
+                      }}
+                      className="block w-full text-left px-4 py-2 text-sm text-foreground/80 hover:bg-primary/10 hover:text-primary transition-colors"
+                    >
+                      {s}
+                    </button>
+                  ))}
+                  <div className="border-t border-border mt-1 pt-1">
+                    <button
+                      onClick={handleSchedule}
+                      className="block w-full text-left px-4 py-2 text-sm font-medium text-primary hover:bg-primary/10 transition-colors"
+                    >
+                      Agende sua avaliação →
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <button onClick={() => navigate('/kalin-partner')} className="text-foreground/80 hover:text-primary transition-colors font-medium">
+              Kalin Partner
+            </button>
+            <button onClick={() => navigate('/kalin-academy')} className="text-foreground/80 hover:text-primary transition-colors font-medium">
+              Kalin Academy
+            </button>
+            <button onClick={() => scrollToSection('#contato')} className="text-foreground/80 hover:text-primary transition-colors font-medium">
+              Contatos
+            </button>
           </nav>
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center gap-4">
-            <Button 
-              onClick={() => scrollToSection('#contato')}
-              className="gap-2"
-            >
+            <Button onClick={handleSchedule} className="gap-2">
               <Phone className="h-4 w-4" />
               Agende sua Avaliação
             </Button>
@@ -79,19 +154,25 @@ const Header = () => {
         {isMenuOpen && (
           <div className="lg:hidden py-4 border-t border-border">
             <nav className="flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => scrollToSection(link.href)}
-                  className="text-foreground/80 hover:text-primary transition-colors font-medium py-2 text-left"
-                >
-                  {link.label}
-                </button>
-              ))}
-              <Button 
-                onClick={() => scrollToSection('#contato')}
-                className="mt-4 gap-2"
-              >
+              <button onClick={() => scrollToSection('#home')} className="text-foreground/80 hover:text-primary transition-colors font-medium py-2 text-left">
+                Home
+              </button>
+              <button onClick={() => scrollToSection('#quem-somos')} className="text-foreground/80 hover:text-primary transition-colors font-medium py-2 text-left">
+                Quem Somos
+              </button>
+              <button onClick={() => scrollToSection('#galeria')} className="text-foreground/80 hover:text-primary transition-colors font-medium py-2 text-left">
+                Especialidades
+              </button>
+              <button onClick={() => { navigate('/kalin-partner'); setIsMenuOpen(false); }} className="text-foreground/80 hover:text-primary transition-colors font-medium py-2 text-left">
+                Kalin Partner
+              </button>
+              <button onClick={() => { navigate('/kalin-academy'); setIsMenuOpen(false); }} className="text-foreground/80 hover:text-primary transition-colors font-medium py-2 text-left">
+                Kalin Academy
+              </button>
+              <button onClick={() => scrollToSection('#contato')} className="text-foreground/80 hover:text-primary transition-colors font-medium py-2 text-left">
+                Contatos
+              </button>
+              <Button onClick={handleSchedule} className="mt-4 gap-2">
                 <Phone className="h-4 w-4" />
                 Agende sua Avaliação
               </Button>

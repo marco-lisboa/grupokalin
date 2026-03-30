@@ -24,6 +24,10 @@ const Gallery = () => {
     { id: 6, title: 'Quiropraxia', image: respiratoriaImg },
   ];
 
+  const handleSchedule = () => {
+    window.open('https://api.seufisio.com.br/pre-cadastro/0dba64f3-6a3e-4dc5-99b0-b0e2379b264d/prospect', '_blank');
+  };
+
   return (
     <section id="galeria" className="py-20 lg:py-32 bg-background" ref={ref}>
       <div className="container mx-auto px-4">
@@ -40,22 +44,19 @@ const Gallery = () => {
             </h2>
             
             <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-6" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-              Atendimento particular e domiciliar
+              Atendimento particular
             </h3>
             
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Fisioterapia nas áreas: <span className="text-foreground font-medium">Traumato-ortopédica, Neurológica, Esportiva, RPG, Respiratória, Uroginecológica, Dermatofuncional, Acupuntura e Pilates</span>. E ainda: <span className="text-foreground font-medium">Psicologia, Quiropraxia, Biomedicina</span>.
+              Fisioterapia nas áreas: <span className="text-foreground font-medium">Neurofuncional, Pélvica, Esportiva, Pediátrica, Traumato-Ortopédica, Gerontológica, Saúde do Trabalho, Pilates, Reeducação Postural (RPG), Acupuntura, Recovery, Quiropraxia</span>. E ainda: <span className="text-foreground font-medium">Nutricionista, Psicologia</span>.
             </p>
             
             <p className="text-sm text-muted-foreground mb-8">
               *Imagens meramente ilustrativas.
             </p>
 
-            <Button 
-              onClick={() => document.querySelector('#contato')?.scrollIntoView({ behavior: 'smooth' })}
-              size="lg"
-            >
-              Ver todas
+            <Button onClick={handleSchedule} size="lg">
+              Agende sua avaliação
             </Button>
           </motion.div>
 
@@ -69,17 +70,12 @@ const Gallery = () => {
                 transition={{ duration: 0.5, delay: 0.1 * index }}
                 className="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer shadow-lg"
               >
-                {/* Image */}
                 <img 
                   src={specialty.image} 
                   alt={specialty.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                
-                {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent" />
-
-                {/* Title */}
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <p className="text-background font-semibold text-center text-sm md:text-base" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                     {specialty.title}
