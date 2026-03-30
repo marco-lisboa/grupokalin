@@ -1,122 +1,107 @@
-import { motion } from 'framer-motion';
-import { ArrowRight, Heart, Shield, Award } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import heroImage from '@/assets/hero-physio.jpg';
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+import bannerSimposio from '@/assets/banner-simposio.jpg';
+import bannerOrtopedica from '@/assets/banner-ortopedica.jpg';
+import bannerEsportiva from '@/assets/banner-esportiva.jpg';
+import bannerGerontologica from '@/assets/banner-gerontologica.jpg';
+import bannerNeurofuncional from '@/assets/banner-neurofuncional.jpg';
+import bannerSaudeTrabalho from '@/assets/banner-saude-trabalho.jpg';
+import bannerPediatrica from '@/assets/banner-pediatrica.jpg';
+import bannerPilates from '@/assets/banner-pilates.jpg';
+import bannerNutricionista from '@/assets/banner-nutricionista.jpg';
+import bannerHeroOriginal from '@/assets/banner-hero-original.png';
+
+const banners = [
+  bannerSimposio,
+  bannerOrtopedica,
+  bannerEsportiva,
+  bannerGerontologica,
+  bannerNeurofuncional,
+  bannerSaudeTrabalho,
+  bannerPediatrica,
+  bannerPilates,
+  bannerNutricionista,
+  bannerHeroOriginal,
+];
 
 const Hero = () => {
-  const scrollToContact = () => {
-    const element = document.querySelector('#contato');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  const goTo = useCallback((index: number, dir: number) => {
+    setDirection(dir);
+    setCurrent(index);
+  }, []);
+
+  const next = useCallback(() => {
+    goTo((current + 1) % banners.length, 1);
+  }, [current, goTo]);
+
+  const prev = useCallback(() => {
+    goTo((current - 1 + banners.length) % banners.length, -1);
+  }, [current, goTo]);
+
+  // Auto-play
+  useEffect(() => {
+    const timer = setInterval(next, 4000);
+    return () => clearInterval(timer);
+  }, [next]);
+
+  const variants = {
+    enter: (dir: number) => ({ x: dir > 0 ? '100%' : '-100%', opacity: 0 }),
+    center: { x: 0, opacity: 1 },
+    exit: (dir: number) => ({ x: dir > 0 ? '-100%' : '100%', opacity: 0 }),
   };
 
-  const features = [
-    { icon: Heart, text: 'Cuidado Humanizado' },
-    { icon: Shield, text: 'Profissionais Qualificados' },
-    { icon: Award, text: 'Excelência em Resultados' },
-  ];
-
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      {/* Background image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      />
-      {/* Overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-transparent" />
+    <section id="home" className="relative w-full h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden mt-16 md:mt-20">
+      {/* Slides */}
+      <AnimatePresence custom={direction} mode="popLayout">
+        <motion.img
+          key={current}
+          src={banners[current]}
+          alt={`Banner ${current + 1}`}
+          custom={direction}
+          variants={variants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+      </AnimatePresence>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center lg:text-left"
-          >
-            <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6 backdrop-blur-sm">
-              Fisioterapia & Pilates
-            </span>
-            
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-              Seu bem-estar é nossa{' '}
-              <span className="text-primary">prioridade</span>
-            </h1>
-            
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg mx-auto lg:mx-0">
-              No Grupo Kalin, oferecemos tratamentos personalizados de fisioterapia e pilates 
-              para você recuperar sua qualidade de vida com cuidado e profissionalismo.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
-              <Button size="lg" onClick={scrollToContact} className="gap-2 text-base px-8">
-                Agende sua Avaliação
-                <ArrowRight className="h-5 w-5" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                onClick={() => document.querySelector('#servicos')?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-base px-8 backdrop-blur-sm"
-              >
-                Conheça nossos Serviços
-              </Button>
-            </div>
-
-            {/* Features */}
-            <div className="flex flex-wrap gap-6 justify-center lg:justify-start">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={feature.text}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 + index * 0.1 }}
-                  className="flex items-center gap-2 text-muted-foreground backdrop-blur-sm bg-background/30 px-3 py-2 rounded-lg"
-                >
-                  <feature.icon className="h-5 w-5 text-primary" />
-                  <span className="text-sm font-medium">{feature.text}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Circular image element */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden lg:flex items-center justify-center"
-          >
-            <div className="relative">
-              {/* Outer decorative ring */}
-              <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-primary/30 to-primary/10 blur-sm" />
-              {/* Main circular image */}
-              <div className="relative w-80 h-80 xl:w-96 xl:h-96 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
-                <img 
-                  src={heroImage} 
-                  alt="Fisioterapeuta em atendimento"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              {/* Accent circle */}
-              <div className="absolute -bottom-2 -right-2 w-20 h-20 rounded-full bg-primary/80 backdrop-blur-sm" />
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.div 
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
+      {/* Arrow buttons */}
+      <button
+        onClick={prev}
+        className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-20 bg-background/50 hover:bg-background/80 backdrop-blur-sm text-foreground rounded-full p-2 md:p-3 transition-colors"
+        aria-label="Anterior"
       >
-        <div className="w-6 h-10 border-2 border-primary/30 rounded-full flex justify-center pt-2 backdrop-blur-sm">
-          <div className="w-1.5 h-3 bg-primary rounded-full" />
-        </div>
-      </motion.div>
+        <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
+      </button>
+      <button
+        onClick={next}
+        className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-20 bg-background/50 hover:bg-background/80 backdrop-blur-sm text-foreground rounded-full p-2 md:p-3 transition-colors"
+        aria-label="Próximo"
+      >
+        <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
+      </button>
+
+      {/* Dots */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        {banners.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i, i > current ? 1 : -1)}
+            className={`w-2.5 h-2.5 rounded-full transition-all ${
+              i === current ? 'bg-primary scale-125' : 'bg-background/60 hover:bg-background/90'
+            }`}
+            aria-label={`Ir para slide ${i + 1}`}
+          />
+        ))}
+      </div>
     </section>
   );
 };
