@@ -1,66 +1,44 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
-import { Phone, Mail, MapPin, Clock, Send, Instagram } from 'lucide-react';
+import { useRef } from 'react';
+import { Phone, Mail, MapPin, Clock, ExternalLink, Instagram, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { toast } = useToast();
-  
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    message: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    toast({
-      title: "Mensagem enviada!",
-      description: "Entraremos em contato em breve.",
-    });
-
-    setFormData({ name: '', phone: '', message: '' });
-    setIsSubmitting(false);
-  };
 
   const contactInfo = [
     {
       icon: Phone,
       title: 'Telefone / WhatsApp',
-      value: '(00) 00000-0000',
-      href: 'https://wa.me/5500000000000',
+      value: '(21) 98066-3946',
+      href: 'https://wa.me/5521980663946?text=Ol%C3%A1!',
     },
     {
       icon: Mail,
       title: 'E-mail',
-      value: 'contato@grupokalin.com.br',
-      href: 'mailto:contato@grupokalin.com.br',
+      value: 'adm@kalin.com.br',
+      href: 'mailto:adm@kalin.com.br',
     },
     {
       icon: MapPin,
       title: 'Endereço',
-      value: 'Rua Exemplo, 123 - Centro',
-      href: '#',
+      value: 'Ed. Ponto Norte Empresarial - Av. Dom Helder Câmara, 5644 - Sala 910 - Engenho de Dentro - Rio de Janeiro/RJ - CEP: 20771-034',
+      subtext: 'Referência: Próximo ao Norte Shopping',
+      href: 'https://maps.google.com/?q=Av.+Dom+Helder+Câmara,+5644+-+Engenho+de+Dentro,+Rio+de+Janeiro',
     },
     {
       icon: Clock,
       title: 'Horário de Funcionamento',
-      value: 'Seg-Sex: 8h às 20h | Sáb: 8h às 13h',
+      value: 'Seg-Sex: 8h às 20h | Sáb: 8h às 12h',
       href: null,
     },
   ];
+
+  const handleSchedule = () => {
+    window.open('https://api.seufisio.com.br/pre-cadastro/0dba64f3-6a3e-4dc5-99b0-b0e2379b264d/prospect', '_blank');
+  };
 
   return (
     <section id="contato" className="py-20 lg:py-32 bg-secondary/30" ref={ref}>
@@ -116,7 +94,10 @@ const Contact = () => {
                       <h3 className="font-medium text-foreground" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                         {item.title}
                       </h3>
-                      <p className="text-muted-foreground">{item.value}</p>
+                      <p className="text-muted-foreground text-sm">{item.value}</p>
+                      {'subtext' in item && item.subtext && (
+                        <p className="text-muted-foreground text-xs mt-1">{item.subtext}</p>
+                      )}
                     </div>
                   </a>
                 ) : (
@@ -140,86 +121,53 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.7 }}
-              className="pt-4"
+              className="pt-4 flex flex-col gap-3"
             >
-              <p className="text-sm text-muted-foreground mb-3">Siga-nos nas redes sociais:</p>
-              <a
-                href="https://www.instagram.com/grupokalin/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:opacity-90 transition-opacity"
-              >
-                <Instagram className="h-5 w-5" />
-                @grupokalin
-              </a>
+              <p className="text-sm text-muted-foreground">Siga-nos nas redes sociais:</p>
+              <div className="flex gap-3">
+                <a
+                  href="https://www.instagram.com/grupokalin/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:opacity-90 transition-opacity"
+                >
+                  <Instagram className="h-5 w-5" />
+                  @grupokalin
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/grupokalin/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#0A66C2] text-white rounded-lg hover:opacity-90 transition-opacity"
+                >
+                  <Linkedin className="h-5 w-5" />
+                  grupokalin
+                </a>
+              </div>
             </motion.div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* CTA Card */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <form onSubmit={handleSubmit} className="bg-background p-8 rounded-2xl border border-border shadow-sm">
-              <h3 className="text-xl font-semibold text-foreground mb-6" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                Envie uma mensagem
-              </h3>
-
-              <div className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                    Nome completo
-                  </label>
-                  <Input
-                    id="name"
-                    placeholder="Seu nome"
-                    value={formData.name}
-                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                    Telefone / WhatsApp
-                  </label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="(00) 00000-0000"
-                    value={formData.phone}
-                    onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    Mensagem
-                  </label>
-                  <Textarea
-                    id="message"
-                    placeholder="Como podemos ajudá-lo?"
-                    rows={4}
-                    value={formData.message}
-                    onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                    required
-                  />
-                </div>
-
-                <Button type="submit" className="w-full gap-2" disabled={isSubmitting}>
-                  {isSubmitting ? (
-                    'Enviando...'
-                  ) : (
-                    <>
-                      <Send className="h-4 w-4" />
-                      Enviar Mensagem
-                    </>
-                  )}
-                </Button>
+            <div className="bg-background p-8 rounded-2xl border border-border shadow-sm text-center">
+              <div className="p-4 bg-primary/10 rounded-2xl w-fit mx-auto mb-6">
+                <ExternalLink className="h-10 w-10 text-primary" />
               </div>
-            </form>
+              <h3 className="text-xl font-semibold text-foreground mb-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                Agende sua Avaliação
+              </h3>
+              <p className="text-muted-foreground mb-6">
+                Faça seu pré-cadastro no nosso sistema e agende sua avaliação de forma rápida e prática.
+              </p>
+              <Button onClick={handleSchedule} size="lg" className="w-full gap-2">
+                <ExternalLink className="h-4 w-4" />
+                Fazer Pré-Cadastro
+              </Button>
+            </div>
           </motion.div>
         </div>
       </div>

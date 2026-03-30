@@ -1,4 +1,4 @@
-import { Heart, Instagram, Phone, Mail, MapPin } from 'lucide-react';
+import { Heart, Instagram, Linkedin, Phone, Mail, MapPin } from 'lucide-react';
 import logo from '@/assets/logo-grupo-kalin.png';
 
 const Footer = () => {
@@ -7,9 +7,8 @@ const Footer = () => {
   const quickLinks = [
     { href: '#home', label: 'Home' },
     { href: '#quem-somos', label: 'Quem Somos' },
-    { href: '#servicos', label: 'Serviços' },
-    { href: '#galeria', label: 'Galeria' },
-    { href: '#contato', label: 'Contato' },
+    { href: '#galeria', label: 'Especialidades' },
+    { href: '#contato', label: 'Contatos' },
   ];
 
   const scrollToSection = (href: string) => {
@@ -35,15 +34,26 @@ const Footer = () => {
               Cuidando da sua saúde e bem-estar com excelência em fisioterapia e pilates. 
               Seu corpo merece o melhor cuidado.
             </p>
-            <a
-              href="https://www.instagram.com/grupokalin/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-background/70 hover:text-background transition-colors"
-            >
-              <Instagram className="h-5 w-5" />
-              @grupokalin
-            </a>
+            <div className="flex gap-3">
+              <a
+                href="https://www.instagram.com/grupokalin/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-background/70 hover:text-background transition-colors"
+              >
+                <Instagram className="h-5 w-5" />
+                @grupokalin
+              </a>
+              <a
+                href="https://www.linkedin.com/company/grupokalin/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-background/70 hover:text-background transition-colors"
+              >
+                <Linkedin className="h-5 w-5" />
+                LinkedIn
+              </a>
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -73,27 +83,27 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <a 
-                  href="https://wa.me/5500000000000" 
+                  href="https://wa.me/5521980663946?text=Ol%C3%A1!" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-background/70 hover:text-background transition-colors"
                 >
                   <Phone className="h-4 w-4" />
-                  (00) 00000-0000
+                  (21) 98066-3946
                 </a>
               </li>
               <li>
                 <a 
-                  href="mailto:contato@grupokalin.com.br"
+                  href="mailto:adm@kalin.com.br"
                   className="flex items-center gap-2 text-background/70 hover:text-background transition-colors"
                 >
                   <Mail className="h-4 w-4" />
-                  contato@grupokalin.com.br
+                  adm@kalin.com.br
                 </a>
               </li>
               <li className="flex items-start gap-2 text-background/70">
                 <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <span>Rua Exemplo, 123 - Centro</span>
+                <span className="text-sm">Ed. Ponto Norte Empresarial - Av. Dom Helder Câmara, 5644 - Sala 910 - Engenho de Dentro - RJ</span>
               </li>
             </ul>
           </div>
