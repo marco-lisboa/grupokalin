@@ -12,7 +12,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Telefone / WhatsApp',
-      value: '(21) 98066-3946',
+      value: '(21) 98035-9990',
       href: 'https://wa.me/5521980663946?text=Ol%C3%A1!',
     },
     {
