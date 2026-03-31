@@ -66,23 +66,23 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-white/10" style={{ backgroundColor: '#07580C' }}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href="#home" onClick={() => scrollToSection('#home')} className="flex items-center gap-3">
-            <img src={logo} alt="Grupo Kalin" className="h-12 w-auto" />
-            <span className="font-bold text-xl text-primary hidden sm:block" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-              Grupo Kalin Fisioterapia
+            <img src={logo} alt="Grupo Kalin" className="h-12 w-auto brightness-0 invert" />
+            <span className="font-bold text-xl text-white hidden sm:block" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              Grupo Kalin
             </span>
           </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6">
-            <button onClick={() => scrollToSection('#home')} className="text-foreground/80 hover:text-primary transition-colors font-medium">
+            <button onClick={() => scrollToSection('#home')} className="text-white/80 hover:text-white transition-colors font-medium">
               Home
             </button>
-            <button onClick={() => scrollToSection('#quem-somos')} className="text-foreground/80 hover:text-primary transition-colors font-medium">
+            <button onClick={() => scrollToSection('#quem-somos')} className="text-white/80 hover:text-white transition-colors font-medium">
               Quem Somos
             </button>
 
@@ -90,7 +90,7 @@ const Header = () => {
             <div ref={dropdownRef} className="relative">
               <button
                 onClick={() => setIsSpecialtiesOpen(!isSpecialtiesOpen)}
-                className="flex items-center gap-1 text-foreground/80 hover:text-primary transition-colors font-medium"
+                className="flex items-center gap-1 text-white/80 hover:text-white transition-colors font-medium"
               >
                 Especialidades
                 <ChevronDown className={`h-4 w-4 transition-transform ${isSpecialtiesOpen ? 'rotate-180' : ''}`} />
@@ -121,20 +121,20 @@ const Header = () => {
               )}
             </div>
 
-            <button onClick={() => navigate('/kalin-partner')} className="text-foreground/80 hover:text-primary transition-colors font-medium">
+            <button onClick={() => navigate('/kalin-partner')} className="text-white/80 hover:text-white transition-colors font-medium">
               Kalin Partner
             </button>
-            <button onClick={() => navigate('/kalin-academy')} className="text-foreground/80 hover:text-primary transition-colors font-medium">
+            <button onClick={() => navigate('/kalin-academy')} className="text-white/80 hover:text-white transition-colors font-medium">
               Kalin Academy
             </button>
-            <button onClick={() => scrollToSection('#contato')} className="text-foreground/80 hover:text-primary transition-colors font-medium">
+            <button onClick={() => scrollToSection('#contato')} className="text-white/80 hover:text-white transition-colors font-medium">
               Contatos
             </button>
           </nav>
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center gap-4">
-            <Button onClick={handleSchedule} className="gap-2">
+            <Button onClick={handleSchedule} className="gap-2 bg-white text-[#07580C] hover:bg-white/90">
               <Phone className="h-4 w-4" />
               Agende sua Avaliação
             </Button>
@@ -143,7 +143,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 text-foreground"
+            className="lg:hidden p-2 text-white"
             aria-label="Menu"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -152,27 +152,27 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border">
+          <div className="lg:hidden py-4 border-t border-white/20">
             <nav className="flex flex-col gap-2">
-              <button onClick={() => scrollToSection('#home')} className="text-foreground/80 hover:text-primary transition-colors font-medium py-2 text-left">
+              <button onClick={() => scrollToSection('#home')} className="text-white/80 hover:text-white transition-colors font-medium py-2 text-left">
                 Home
               </button>
-              <button onClick={() => scrollToSection('#quem-somos')} className="text-foreground/80 hover:text-primary transition-colors font-medium py-2 text-left">
+              <button onClick={() => scrollToSection('#quem-somos')} className="text-white/80 hover:text-white transition-colors font-medium py-2 text-left">
                 Quem Somos
               </button>
-              <button onClick={() => scrollToSection('#galeria')} className="text-foreground/80 hover:text-primary transition-colors font-medium py-2 text-left">
+              <button onClick={() => scrollToSection('#galeria')} className="text-white/80 hover:text-white transition-colors font-medium py-2 text-left">
                 Especialidades
               </button>
-              <button onClick={() => { navigate('/kalin-partner'); setIsMenuOpen(false); }} className="text-foreground/80 hover:text-primary transition-colors font-medium py-2 text-left">
+              <button onClick={() => { navigate('/kalin-partner'); setIsMenuOpen(false); }} className="text-white/80 hover:text-white transition-colors font-medium py-2 text-left">
                 Kalin Partner
               </button>
-              <button onClick={() => { navigate('/kalin-academy'); setIsMenuOpen(false); }} className="text-foreground/80 hover:text-primary transition-colors font-medium py-2 text-left">
+              <button onClick={() => { navigate('/kalin-academy'); setIsMenuOpen(false); }} className="text-white/80 hover:text-white transition-colors font-medium py-2 text-left">
                 Kalin Academy
               </button>
-              <button onClick={() => scrollToSection('#contato')} className="text-foreground/80 hover:text-primary transition-colors font-medium py-2 text-left">
+              <button onClick={() => scrollToSection('#contato')} className="text-white/80 hover:text-white transition-colors font-medium py-2 text-left">
                 Contatos
               </button>
-              <Button onClick={handleSchedule} className="mt-4 gap-2">
+              <Button onClick={handleSchedule} className="mt-4 gap-2 bg-white text-[#07580C] hover:bg-white/90">
                 <Phone className="h-4 w-4" />
                 Agende sua Avaliação
               </Button>
