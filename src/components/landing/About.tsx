@@ -53,15 +53,12 @@ const About = () => {
               <span className="text-primary">saúde e qualidade de vida</span>
             </h2>
             
-            <p className="text-lg text-muted-foreground mb-6">
-              O Grupo Kalin nasceu do desejo de oferecer um serviço de fisioterapia diferenciado, 
-              onde o cuidado humano e a excelência técnica caminham juntos.
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              O Fisioterapeuta, Dr. Rodrigo Kalinka, após se destacar com o seu atendimento e carisma na clínica onde trabalhava, decide abrir a sua própria clínica onde pretende continuar com o seu excelente trabalho, acolhendo os seus pacientes e criando uma relação de fidelidade.
             </p>
             
-            <p className="text-muted-foreground mb-8">
-              Nossa missão é proporcionar tratamentos de reabilitação e prevenção que realmente 
-              transformem a vida dos nossos pacientes. Com uma equipe altamente qualificada e 
-              dedicada, buscamos sempre os melhores resultados para cada pessoa que nos procura.
+            <p className="text-muted-foreground mb-8 leading-relaxed">
+              A clínica Kalin trabalhará com todo tipo de reabilitações na área da fisioterapia, e também com profissionais como nutricionista, fonoaudiólogo, psicólogo, terapeuta ocupacional, educador físico, estética, quiropraxia, entre outros.
             </p>
 
             {/* Differentials list */}

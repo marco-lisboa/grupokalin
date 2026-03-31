@@ -1,5 +1,5 @@
 import { Heart, Instagram, Linkedin, Phone, Mail, MapPin } from 'lucide-react';
-import logo from '@/assets/logo-grupo-kalin.png';
+import logo from '@/assets/logo-kalin-green.jpeg';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -25,16 +25,16 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <img src={logo} alt="Grupo Kalin" className="h-12 w-auto brightness-0 invert" />
+              <img src={logo} alt="Grupo Kalin" className="h-14 w-auto rounded-lg" />
               <span className="font-bold text-xl text-background" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                Grupo Kalin Fisioterapia
+                Grupo Kalin
               </span>
             </div>
             <p className="text-background/70 mb-6 max-w-md">
               Cuidando da sua saúde e bem-estar com excelência em fisioterapia e pilates. 
               Seu corpo merece o melhor cuidado.
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               <a
                 href="https://www.instagram.com/grupokalin/"
                 target="_blank"
