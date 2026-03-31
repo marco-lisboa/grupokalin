@@ -6,7 +6,7 @@ import bannerSimposio from '@/assets/banner-simposio.jpg';
 import bannerOrtopedica from '@/assets/banner-ortopedica.jpg';
 import bannerEsportiva from '@/assets/banner-esportiva.jpg';
 import bannerGerontologica from '@/assets/banner-gerontologica.jpg';
-import bannerNeurofuncional from '@/assets/banner-neurofuncional.jpg';
+import bannerNeurofuncional from '@/assets/banner-neurofuncional.jpeg';
 import bannerSaudeTrabalho from '@/assets/banner-saude-trabalho.jpg';
 import bannerPediatrica from '@/assets/banner-pediatrica.jpg';
 import bannerPilates from '@/assets/banner-pilates.jpg';
