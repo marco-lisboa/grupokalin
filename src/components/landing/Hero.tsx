@@ -1,5 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import bannerSimposio from '@/assets/banner-simposio.jpg';
@@ -28,20 +27,19 @@ const banners = [
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState(1);
+  const trackRef = useRef<HTMLDivElement>(null);
 
-  const goTo = useCallback((index: number, dir: number) => {
-    setDirection(dir);
+  const goTo = useCallback((index: number) => {
     setCurrent(index);
   }, []);
 
   const next = useCallback(() => {
-    goTo((current + 1) % banners.length, 1);
-  }, [current, goTo]);
+    setCurrent((prev) => (prev + 1) % banners.length);
+  }, []);
 
   const prev = useCallback(() => {
-    goTo((current - 1 + banners.length) % banners.length, -1);
-  }, [current, goTo]);
+    setCurrent((prev) => (prev - 1 + banners.length) % banners.length);
+  }, []);
 
   // Auto-play
   useEffect(() => {
@@ -49,33 +47,24 @@ const Hero = () => {
     return () => clearInterval(timer);
   }, [next]);
 
-  const variants = {
-    enter: (dir: number) => ({ x: dir > 0 ? '100%' : '-100%' }),
-    center: { x: 0 },
-    exit: (dir: number) => ({ x: dir > 0 ? '-100%' : '100%' }),
-  };
-
   return (
     <section id="home" className="relative w-full overflow-hidden mt-16 md:mt-20">
-      {/* Slides */}
-      <AnimatePresence custom={direction} mode="popLayout">
-        <motion.div
-          key={current}
-          custom={direction}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{ duration: 0.5, ease: 'easeInOut' }}
-          className="w-full"
-        >
-          <img
-            src={banners[current]}
-            alt={`Banner ${current + 1}`}
-            className="w-full h-auto block"
-          />
-        </motion.div>
-      </AnimatePresence>
+      {/* Slides track - CSS transition carousel */}
+      <div
+        ref={trackRef}
+        className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${current * 100}%)` }}
+      >
+        {banners.map((src, i) => (
+          <div key={i} className="w-full flex-shrink-0">
+            <img
+              src={src}
+              alt={`Banner ${i + 1}`}
+              className="w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px] xl:h-[600px] object-cover"
+            />
+          </div>
+        ))}
+      </div>
 
       {/* Arrow buttons */}
       <button
@@ -98,7 +87,7 @@ const Hero = () => {
         {banners.map((_, i) => (
           <button
             key={i}
-            onClick={() => goTo(i, i > current ? 1 : -1)}
+            onClick={() => goTo(i)}
             className={`w-2.5 h-2.5 rounded-full transition-all ${
               i === current ? 'bg-primary scale-125' : 'bg-background/60 hover:bg-background/90'
             }`}
