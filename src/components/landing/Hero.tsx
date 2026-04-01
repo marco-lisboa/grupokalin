@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import bannerSimposio from '@/assets/banner-simposio.jpg';
@@ -27,7 +27,6 @@ const banners = [
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
-  const trackRef = useRef<HTMLDivElement>(null);
 
   const goTo = useCallback((index: number) => {
     setCurrent(index);
@@ -41,18 +40,15 @@ const Hero = () => {
     setCurrent((prev) => (prev - 1 + banners.length) % banners.length);
   }, []);
 
-  // Auto-play
   useEffect(() => {
     const timer = setInterval(next, 4000);
     return () => clearInterval(timer);
   }, [next]);
 
   return (
-    <section id="home" className="relative w-full overflow-hidden mt-16 md:mt-20">
-      {/* Slides track - CSS transition carousel */}
+    <section id="home" className="relative mt-16 w-full overflow-hidden md:mt-20">
       <div
-        ref={trackRef}
-        className="flex transition-transform duration-500 ease-in-out"
+        className="flex w-full transition-transform duration-500 ease-in-out will-change-transform"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {banners.map((src, i) => (
@@ -60,35 +56,33 @@ const Hero = () => {
             <img
               src={src}
               alt={`Banner ${i + 1}`}
-              className="w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px] xl:h-[600px] object-cover"
+              className="block w-full h-auto"
             />
           </div>
         ))}
       </div>
 
-      {/* Arrow buttons */}
       <button
         onClick={prev}
-        className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-20 bg-background/50 hover:bg-background/80 backdrop-blur-sm text-foreground rounded-full p-2 md:p-3 transition-colors"
+        className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-background/50 p-2 text-foreground backdrop-blur-sm transition-colors hover:bg-background/80 md:left-6 md:p-3"
         aria-label="Anterior"
       >
         <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
       </button>
       <button
         onClick={next}
-        className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-20 bg-background/50 hover:bg-background/80 backdrop-blur-sm text-foreground rounded-full p-2 md:p-3 transition-colors"
+        className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-background/50 p-2 text-foreground backdrop-blur-sm transition-colors hover:bg-background/80 md:right-6 md:p-3"
         aria-label="Próximo"
       >
         <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
       </button>
 
-      {/* Dots */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+      <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-2 md:bottom-4">
         {banners.map((_, i) => (
           <button
             key={i}
             onClick={() => goTo(i)}
-            className={`w-2.5 h-2.5 rounded-full transition-all ${
+            className={`h-2.5 w-2.5 rounded-full transition-all ${
               i === current ? 'bg-primary scale-125' : 'bg-background/60 hover:bg-background/90'
             }`}
             aria-label={`Ir para slide ${i + 1}`}
