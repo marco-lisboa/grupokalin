@@ -56,7 +56,7 @@ const Hero = () => {
             <img
               src={src}
               alt={`Banner ${i + 1}`}
-              className="block w-full h-auto"
+              className="block w-full h-[250px] object-cover object-center md:h-auto"
             />
           </div>
         ))}
