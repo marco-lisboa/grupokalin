@@ -10,14 +10,14 @@ import bannerSaudeTrabalho from '@/assets/banner-saude-trabalho.jpg';
 import bannerPediatrica from '@/assets/banner-pediatrica.jpg';
 import bannerPilates from '@/assets/banner-pilates.jpg';
 import bannerNutricionista from '@/assets/banner-nutricionista.jpg';
-import bannerHeroOriginal from '@/assets/banner-hero-original.png';
+import bannerHeroOriginal from '@/assets/banner-hero-original.jpeg';
 
 const banners = [
+  bannerNeurofuncional,
   bannerSimposio,
   bannerOrtopedica,
   bannerEsportiva,
   bannerGerontologica,
-  bannerNeurofuncional,
   bannerSaudeTrabalho,
   bannerPediatrica,
   bannerPilates,
