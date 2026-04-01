@@ -36,6 +36,8 @@ const Contact = () => {
     },
   ];
 
+  const cnpj = '65.302.767/0001-10';
+
   const handleSchedule = () => {
     window.open('https://api.seufisio.com.br/pre-cadastro/0dba64f3-6a3e-4dc5-99b0-b0e2379b264d/prospect', '_blank');
   };
@@ -116,11 +118,22 @@ const Contact = () => {
               </motion.div>
             ))}
 
-            {/* Social media */}
+            {/* CNPJ */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.7 }}
+              className="p-4 bg-background rounded-xl border border-border"
+            >
+              <h3 className="font-medium text-foreground" style={{ fontFamily: 'Montserrat, sans-serif' }}>CNPJ</h3>
+              <p className="text-muted-foreground text-sm">{cnpj}</p>
+            </motion.div>
+
+            {/* Social media */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.8 }}
               className="pt-4 flex flex-col gap-3"
             >
               <p className="text-sm text-muted-foreground">Siga-nos nas redes sociais:</p>
