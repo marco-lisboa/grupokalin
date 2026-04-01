@@ -36,6 +36,8 @@ const Contact = () => {
     },
   ];
 
+  const cnpj = '65.302.767/0001-10';
+
   const handleSchedule = () => {
     window.open('https://api.seufisio.com.br/pre-cadastro/0dba64f3-6a3e-4dc5-99b0-b0e2379b264d/prospect', '_blank');
   };
