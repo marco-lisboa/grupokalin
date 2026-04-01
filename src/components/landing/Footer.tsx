@@ -105,6 +105,9 @@ const Footer = () => {
                 <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
                 <span className="text-sm">Ed. Ponto Norte Empresarial - Av. Dom Helder Câmara, 5644 - Sala 910 - Engenho de Dentro - RJ</span>
               </li>
+              <li className="text-background/70 text-sm mt-2">
+                CNPJ: 65.302.767/0001-10
+              </li>
             </ul>
           </div>
         </div>

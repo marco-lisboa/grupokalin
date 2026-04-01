@@ -50,13 +50,13 @@ const Hero = () => {
   }, [next]);
 
   const variants = {
-    enter: (dir: number) => ({ x: dir > 0 ? '100%' : '-100%', opacity: 0 }),
-    center: { x: 0, opacity: 1 },
-    exit: (dir: number) => ({ x: dir > 0 ? '-100%' : '100%', opacity: 0 }),
+    enter: (dir: number) => ({ x: dir > 0 ? '100%' : '-100%' }),
+    center: { x: 0 },
+    exit: (dir: number) => ({ x: dir > 0 ? '-100%' : '100%' }),
   };
 
   return (
-    <section id="home" className="relative w-full h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden mt-16 md:mt-20">
+    <section id="home" className="relative w-full aspect-[16/9] sm:aspect-[16/8] md:aspect-[16/7] lg:aspect-[16/6] overflow-hidden mt-16 md:mt-20 bg-black">
       {/* Slides */}
       <AnimatePresence custom={direction} mode="popLayout">
         <motion.img
@@ -68,8 +68,8 @@ const Hero = () => {
           initial="enter"
           animate="center"
           exit="exit"
-          transition={{ duration: 0.6, ease: 'easeInOut' }}
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+          className="absolute inset-0 w-full h-full object-contain object-center bg-black"
         />
       </AnimatePresence>
 
