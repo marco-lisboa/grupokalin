@@ -13,7 +13,7 @@ const Contact = () => {
       icon: Phone,
       title: 'Telefone / WhatsApp',
       value: '(21) 98035-9990',
-      href: 'https://wa.me/5521980663946?text=Ol%C3%A1!',
+      href: 'https://wa.me/5521980359990?text=Ol%C3%A1!',
     },
     {
       icon: Mail,
@@ -24,9 +24,10 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Endereço',
-      value: 'Ed. Ponto Norte Empresarial - Av. Dom Helder Câmara, 5644 - Sala 910 - Engenho de Dentro - Rio de Janeiro/RJ - CEP: 20771-034',
+      value: 'Ed. Ponto Norte Empresarial - Av. Dom Helder Câmara, 5644 - Sala 910 - Engenho de Dentro - Rio de Janeiro / RJ - CEP: 20771-034',
       subtext: 'Referência: Próximo ao Norte Shopping',
-      href: 'https://maps.google.com/?q=Av.+Dom+Helder+Câmara,+5644+-+Engenho+de+Dentro,+Rio+de+Janeiro',
+      parking: 'Estacionamento no Local',
+      href: 'https://www.google.com/maps/place/PONTO+NORTE+EMPRESARIAL/@-22.887334,-43.2866178,19z/data=!4m6!3m5!1s0x997c536305abc9:0x16f4f2b22a1be596!8m2!3d-22.8870211!4d-43.2856718!16s%2Fg%2F1ptyr3jl7?entry=ttu&g_ep=EgoyMDI2MDMzMC4wIKXMDSoASAFQAw%3D%3D',
     },
     {
       icon: Clock,
@@ -100,6 +101,9 @@ const Contact = () => {
                       {'subtext' in item && item.subtext && (
                         <p className="text-muted-foreground text-xs mt-1">{item.subtext}</p>
                       )}
+                      {'parking' in item && item.parking && (
+                        <p className="text-muted-foreground text-xs mt-1 font-medium">{item.parking as string}</p>
+                      )}
                     </div>
                   </a>
                 ) : (
@@ -125,8 +129,8 @@ const Contact = () => {
               transition={{ delay: 0.7 }}
               className="p-4 bg-background rounded-xl border border-border"
             >
-              <h3 className="font-medium text-foreground" style={{ fontFamily: 'Montserrat, sans-serif' }}>CNPJ</h3>
-              <p className="text-muted-foreground text-sm">{cnpj}</p>
+              <h3 className="font-medium text-foreground" style={{ fontFamily: 'Montserrat, sans-serif' }}>Instituto Kalin</h3>
+              <p className="text-muted-foreground text-sm">CNPJ: {cnpj}</p>
             </motion.div>
 
             {/* Social media */}
@@ -148,7 +152,7 @@ const Contact = () => {
                   @grupokalin
                 </a>
                 <a
-                  href="https://www.linkedin.com/company/grupokalin/"
+                  href="https://www.linkedin.com/in/grupo-kalin-91a7403bb/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 bg-[#0A66C2] text-white rounded-lg hover:opacity-90 transition-opacity"

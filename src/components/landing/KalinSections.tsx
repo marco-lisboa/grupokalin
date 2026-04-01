@@ -29,7 +29,7 @@ const KalinSections = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            onClick={() => navigate('/kalin-partner')}
+            onClick={() => { navigate('/kalin-partner', { state: { internal: true } }); window.scrollTo(0, 0); }}
             className="group cursor-pointer bg-background p-8 rounded-2xl shadow-sm border border-border hover:shadow-lg hover:border-primary/30 transition-all duration-300"
           >
             <div className="p-4 bg-primary/10 rounded-2xl w-fit mb-6 group-hover:bg-primary/20 transition-colors">
@@ -51,7 +51,7 @@ const KalinSections = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.35 }}
-            onClick={() => navigate('/kalin-academy')}
+            onClick={() => { navigate('/kalin-academy', { state: { internal: true } }); window.scrollTo(0, 0); }}
             className="group cursor-pointer bg-background p-8 rounded-2xl shadow-sm border border-border hover:shadow-lg hover:border-primary/30 transition-all duration-300"
           >
             <div className="p-4 bg-primary/10 rounded-2xl w-fit mb-6 group-hover:bg-primary/20 transition-colors">

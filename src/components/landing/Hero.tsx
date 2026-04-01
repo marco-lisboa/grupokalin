@@ -41,7 +41,7 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    const timer = setInterval(next, 4000);
+    const timer = setInterval(next, 5000);
     return () => clearInterval(timer);
   }, [next]);
 
@@ -82,9 +82,8 @@ const Hero = () => {
           <button
             key={i}
             onClick={() => goTo(i)}
-            className={`h-2.5 w-2.5 rounded-full transition-all ${
-              i === current ? 'bg-primary scale-125' : 'bg-background/60 hover:bg-background/90'
-            }`}
+            className={`h-2.5 w-2.5 rounded-full transition-all ${i === current ? 'bg-primary scale-125' : 'bg-background/60 hover:bg-background/90'
+              }`}
             aria-label={`Ir para slide ${i + 1}`}
           />
         ))}

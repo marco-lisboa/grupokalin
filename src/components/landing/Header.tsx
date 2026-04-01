@@ -66,7 +66,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-white/10" style={{ backgroundColor: '#07580C' }}>
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-white/10" style={{ backgroundColor: '#1f2e26' }}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -121,10 +121,10 @@ const Header = () => {
               )}
             </div>
 
-            <button onClick={() => navigate('/kalin-partner')} className="text-white/80 hover:text-white transition-colors font-medium">
+            <button onClick={() => { navigate('/kalin-partner', { state: { internal: true } }); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors font-medium">
               Kalin Partner
             </button>
-            <button onClick={() => navigate('/kalin-academy')} className="text-white/80 hover:text-white transition-colors font-medium">
+            <button onClick={() => { navigate('/kalin-academy', { state: { internal: true } }); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors font-medium">
               Kalin Academy
             </button>
             <button onClick={() => scrollToSection('#contato')} className="text-white/80 hover:text-white transition-colors font-medium">
@@ -163,10 +163,10 @@ const Header = () => {
               <button onClick={() => scrollToSection('#galeria')} className="text-white/80 hover:text-white transition-colors font-medium py-2 text-left">
                 Especialidades
               </button>
-              <button onClick={() => { navigate('/kalin-partner'); setIsMenuOpen(false); }} className="text-white/80 hover:text-white transition-colors font-medium py-2 text-left">
+              <button onClick={() => { navigate('/kalin-partner', { state: { internal: true } }); window.scrollTo(0, 0); setIsMenuOpen(false); }} className="text-white/80 hover:text-white transition-colors font-medium py-2 text-left">
                 Kalin Partner
               </button>
-              <button onClick={() => { navigate('/kalin-academy'); setIsMenuOpen(false); }} className="text-white/80 hover:text-white transition-colors font-medium py-2 text-left">
+              <button onClick={() => { navigate('/kalin-academy', { state: { internal: true } }); window.scrollTo(0, 0); setIsMenuOpen(false); }} className="text-white/80 hover:text-white transition-colors font-medium py-2 text-left">
                 Kalin Academy
               </button>
               <button onClick={() => scrollToSection('#contato')} className="text-white/80 hover:text-white transition-colors font-medium py-2 text-left">

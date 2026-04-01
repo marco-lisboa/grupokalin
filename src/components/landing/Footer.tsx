@@ -1,25 +1,45 @@
 import { Heart, Instagram, Linkedin, Phone, Mail, MapPin } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '@/assets/logo-kalin-green.jpeg';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const quickLinks = [
     { href: '#home', label: 'Home' },
     { href: '#quem-somos', label: 'Quem Somos' },
     { href: '#galeria', label: 'Especialidades' },
+    { href: '/kalin-partner', label: 'Kalin Partner' },
+    { href: '/kalin-academy', label: 'Kalin Academy' },
     { href: '#contato', label: 'Contatos' },
   ];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleLinkClick = (href: string) => {
+    if (href.startsWith('/')) {
+      navigate(href, { state: { internal: true } });
+      window.scrollTo(0, 0);
+    } else {
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          const element = document.querySelector(href);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 300);
+      } else {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     }
   };
 
   return (
-    <footer className="bg-foreground text-background/90">
+    <footer className="text-background/90" style={{ backgroundColor: '#1f2e26' }}>
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
@@ -45,7 +65,7 @@ const Footer = () => {
                 @grupokalin
               </a>
               <a
-                href="https://www.linkedin.com/company/grupokalin/"
+                href="https://www.linkedin.com/in/grupo-kalin-91a7403bb/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-background/70 hover:text-background transition-colors"
@@ -65,7 +85,7 @@ const Footer = () => {
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <button
-                    onClick={() => scrollToSection(link.href)}
+                    onClick={() => handleLinkClick(link.href)}
                     className="text-background/70 hover:text-background transition-colors"
                   >
                     {link.label}
@@ -83,7 +103,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <a 
-                  href="https://wa.me/5521980663946?text=Ol%C3%A1!" 
+                  href="https://wa.me/5521980359990?text=Ol%C3%A1!" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-background/70 hover:text-background transition-colors"
@@ -105,8 +125,9 @@ const Footer = () => {
                 <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
                 <span className="text-sm">Ed. Ponto Norte Empresarial - Av. Dom Helder Câmara, 5644 - Sala 910 - Engenho de Dentro - RJ</span>
               </li>
-              <li className="text-background/70 text-sm mt-2">
-                CNPJ: 65.302.767/0001-10
+              <li className="text-background/70 text-sm mt-2 flex flex-col gap-1">
+                <span>Instituto Kalin</span>
+                <span>CNPJ: 65.302.767/0001-10</span>
               </li>
             </ul>
           </div>

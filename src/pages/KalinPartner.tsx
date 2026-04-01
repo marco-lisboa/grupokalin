@@ -5,9 +5,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import logo from '@/assets/logo-grupo-kalin.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const KalinPartner = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -26,9 +29,13 @@ const KalinPartner = () => {
               Grupo Kalin Fisioterapia
             </span>
           </Link>
-          <Link to="/">
-            <Button variant="outline" size="sm">Voltar ao site</Button>
-          </Link>
+          <Button 
+            onClick={() => location.state?.internal ? navigate(-1) : navigate('/')} 
+            variant="outline" 
+            size="sm"
+          >
+            Voltar ao site
+          </Button>
         </div>
       </header>
 
@@ -49,7 +56,7 @@ const KalinPartner = () => {
           <Card className="shadow-lg">
             <CardHeader className="text-center pb-2">
               <CardTitle className="text-2xl" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                Kalin Partner
+                Kalin <span className="text-primary">Partner</span>
               </CardTitle>
               <p className="text-muted-foreground text-sm mt-2">
                 Acesse sua conta de parceiro
