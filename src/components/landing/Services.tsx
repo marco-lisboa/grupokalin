@@ -82,7 +82,7 @@ const Services = () => {
               transition={{ duration: 0.6, delay: 0.2 + index * 0.15 }}
             >
               <Card className="h-full hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 overflow-hidden group">
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-50`} />
+                <div className={`absolute inset-0 ${service.gradient} opacity-50`} />
                 <CardHeader className="relative pb-4">
                   <div className="p-4 bg-primary/10 rounded-2xl w-fit mb-4 group-hover:bg-primary/20 transition-colors">
                     <service.icon className="h-8 w-8 text-primary" />
