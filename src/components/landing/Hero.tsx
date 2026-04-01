@@ -56,21 +56,25 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative w-full aspect-[16/9] sm:aspect-[16/8] md:aspect-[16/7] lg:aspect-[16/6] overflow-hidden mt-16 md:mt-20 bg-black">
+    <section id="home" className="relative w-full overflow-hidden mt-16 md:mt-20">
       {/* Slides */}
       <AnimatePresence custom={direction} mode="popLayout">
-        <motion.img
+        <motion.div
           key={current}
-          src={banners[current]}
-          alt={`Banner ${current + 1}`}
           custom={direction}
           variants={variants}
           initial="enter"
           animate="center"
           exit="exit"
           transition={{ duration: 0.5, ease: 'easeInOut' }}
-          className="absolute inset-0 w-full h-full object-contain object-center bg-black"
-        />
+          className="w-full"
+        >
+          <img
+            src={banners[current]}
+            alt={`Banner ${current + 1}`}
+            className="w-full h-auto block"
+          />
+        </motion.div>
       </AnimatePresence>
 
       {/* Arrow buttons */}
