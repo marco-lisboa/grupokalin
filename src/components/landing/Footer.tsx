@@ -12,7 +12,7 @@ const Footer = () => {
     { href: '#quem-somos', label: 'Quem Somos' },
     { href: '#galeria', label: 'Especialidades' },
     { href: '/kalin-partner', label: 'Kalin Partner' },
-    { href: '/kalin-academy', label: 'Kalin Academy' },
+    { href: '/kalin-educ', label: 'Kalin Educ' },
     { href: '#contato', label: 'Contatos' },
   ];
 
@@ -51,7 +51,7 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-background/70 mb-6 max-w-md">
-              Cuidando da sua saúde e bem-estar com excelência em fisioterapia e pilates. 
+              Cuidando da sua saúde e bem-estar com excelência em fisioterapia e pilates.
               Seu corpo merece o melhor cuidado.
             </p>
             <div className="flex gap-4">
@@ -102,9 +102,9 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <a 
-                  href="https://wa.me/5521980359990?text=Ol%C3%A1!" 
-                  target="_blank" 
+                <a
+                  href="https://wa.me/5521980359990?text=Ol%C3%A1!"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-background/70 hover:text-background transition-colors"
                 >
@@ -113,7 +113,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a 
+                <a
                   href="mailto:adm@kalin.com.br"
                   className="flex items-center gap-2 text-background/70 hover:text-background transition-colors"
                 >

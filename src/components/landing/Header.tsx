@@ -124,8 +124,8 @@ const Header = () => {
             <button onClick={() => { navigate('/kalin-partner', { state: { internal: true } }); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors font-medium">
               Kalin Partner
             </button>
-            <button onClick={() => { navigate('/kalin-academy', { state: { internal: true } }); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors font-medium">
-              Kalin Academy
+            <button onClick={() => { navigate('/kalin-educ', { state: { internal: true } }); window.scrollTo(0, 0); }} className="text-white/80 hover:text-white transition-colors font-medium">
+              Kalin Educ
             </button>
             <button onClick={() => scrollToSection('#contato')} className="text-white/80 hover:text-white transition-colors font-medium">
               Contatos

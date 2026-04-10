@@ -54,9 +54,13 @@ const About = () => {
               <span className="text-primary">saúde e qualidade de vida</span>
             </h2>
             
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              O Fisioterapeuta, Dr. Rodrigo Kalinka, após se destacar com o seu atendimento e carisma na clínica onde trabalhava, decide abrir a sua própria clínica onde pretende continuar com o seu excelente trabalho, acolhendo os seus pacientes e criando uma relação de fidelidade. A clínica Kalin trabalhará com todo tipo de reabilitações na área da fisioterapia, e também com profissionais como nutricionista, fonoaudiólogo, psicólogo, terapeuta ocupacional, educador físico, estética, quiropraxia, entre outros.
-            </p>
+            <div className="text-lg text-muted-foreground mb-8 leading-relaxed space-y-4">
+              <p>O Espaço Kalin fundado pelo Fisioterapeuta Dr. Rodrigo Kalinka foi projetado para um ambiente especializado em saúde, movimento e reabilitação, criado para oferecer cuidado individualizado e acolhedor a cada paciente e aluno.</p>
+              <p>Com identidade visual em tons de verde, o espaço transmite calma, segurança e bem-estar, refletindo diretamente o compromisso com um atendimento humanizado e baseado em evidências científicas. atendendo desde pacientes com dores crônicas até pessoas que buscam condicionamento físico seguro e orientado.</p>
+              <p>O estúdio é equipado com aparelhos clássicos de Pilates, área para avaliação fisioterapêutica e espaço de atendimento personalizado. A equipe é formada por profissionais fisioterapeutas qualificados.</p>
+              <p>O atendimento é organizado, respeitando horários pré-estabelecidos, comunicação via aplicativo e planejamento de turmas para garantir qualidade, conforto e segurança durante as sessões.</p>
+              <p>Com uma proposta centrada na prevenção, reabilitação e educação em saúde, o Espaço Kalin vem se consolidando como referência em cuidado fisioterapêutico e método Pilates na região.</p>
+            </div>
 
             {/* Differentials list */}
             <div className="grid sm:grid-cols-2 gap-3 text-left w-full max-w-lg mx-auto lg:mx-0">

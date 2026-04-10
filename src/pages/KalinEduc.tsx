@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import logo from '@/assets/logo-grupo-kalin.png';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
-const KalinAcademy = () => {
+const KalinEduc = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -33,9 +33,9 @@ const KalinAcademy = () => {
               Grupo Kalin Fisioterapia
             </span>
           </Link>
-          <Button 
-            onClick={() => location.state?.internal ? navigate(-1) : navigate('/')} 
-            variant="outline" 
+          <Button
+            onClick={() => location.state?.internal ? navigate(-1) : navigate('/')}
+            variant="outline"
             size="sm"
           >
             Voltar ao site
@@ -57,7 +57,7 @@ const KalinAcademy = () => {
           className="text-3xl md:text-4xl font-bold text-foreground mb-10 text-center"
           style={{ fontFamily: 'Montserrat, sans-serif' }}
         >
-          Kalin <span className="text-primary">Academy</span>
+          Kalin <span className="text-primary">Educ</span>
         </motion.h1>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-3xl w-full">
@@ -92,4 +92,4 @@ const KalinAcademy = () => {
   );
 };
 
-export default KalinAcademy;
+export default KalinEduc;

@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import KalinPartner from "./pages/KalinPartner";
-import KalinAcademy from "./pages/KalinAcademy";
+import KalinEduc from "./pages/KalinEduc";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -19,7 +19,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/kalin-partner" element={<KalinPartner />} />
-          <Route path="/kalin-academy" element={<KalinAcademy />} />
+          <Route path="/kalin-educ" element={<KalinEduc />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

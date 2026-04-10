@@ -51,14 +51,14 @@ const KalinSections = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.35 }}
-            onClick={() => { navigate('/kalin-academy', { state: { internal: true } }); window.scrollTo(0, 0); }}
+            onClick={() => { navigate('/kalin-educ', { state: { internal: true } }); window.scrollTo(0, 0); }}
             className="group cursor-pointer bg-background p-8 rounded-2xl shadow-sm border border-border hover:shadow-lg hover:border-primary/30 transition-all duration-300"
           >
             <div className="p-4 bg-primary/10 rounded-2xl w-fit mb-6 group-hover:bg-primary/20 transition-colors">
               <GraduationCap className="h-10 w-10 text-primary" />
             </div>
             <h3 className="text-2xl font-bold text-foreground mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-              Kalin Academy
+              Kalin Educ
             </h3>
             <p className="text-muted-foreground mb-6">
               Simpósios e cursos para profissionais da saúde. Aprimore seus conhecimentos com os melhores especialistas.
